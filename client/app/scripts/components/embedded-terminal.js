@@ -25,6 +25,16 @@ class EmeddedTerminal extends React.Component {
   getTransform() {
     const dx = this.state.mounted ? 0 :
       window.innerWidth - DETAILS_PANEL_WIDTH - DETAILS_PANEL_MARGINS.right;
+
+    // set a timeout to the animation
+    if (this.state.mounted && !this.state.animated) {
+      setTimeout(() => {
+        if (!this.state.animated) {
+          this.setState({ animated: true });
+        }
+      }, 2000);
+    }
+
     return `translateX(${dx}px)`;
   }
 
